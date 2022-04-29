@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+import tk.mybatis.spring.annotation.MapperScan;
+
+@MapperScan(basePackages = "com.leitingjun.portrait.mapper")
+@SpringBootApplication()
 public class PortraitApplication {
 
 	public static void main(String[] args) {

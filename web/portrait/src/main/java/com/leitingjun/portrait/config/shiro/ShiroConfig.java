@@ -6,6 +6,7 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,17 +19,16 @@ import java.util.Map;
 public class ShiroConfig {
     @Autowired
     private ShiroRealm shiroRealm;
-    @Bean
-    public SecurityManager securityManager(){
-        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+    @Bean("securityManager")
+    public DefaultWebSecurityManager securityManager(){
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
         securityManager.setAuthenticator(authenticator);
 
-        Subject subject = SecurityUtils.getSubject();
         securityManager.setRealm(shiroRealm);
         return securityManager;
     }
-    @Bean("shiroFilter")
+    @Bean("shiroFilterFactoryBean")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);

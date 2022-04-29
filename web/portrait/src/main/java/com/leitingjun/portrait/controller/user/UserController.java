@@ -26,13 +26,14 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<User> login(String username,String password){
         User user = userService.findByUsername(username);
-        Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken();
         token.setUsername(username);
         token.setPassword(password.toCharArray());
         token.setRememberMe(true);
         try {
+            Subject subject = SecurityUtils.getSubject();
             subject.login(token);
+
         }catch (UnauthorizedException unauthorizedException){
 
         }catch (UnauthenticatedException unauthenticatedException){

@@ -6,8 +6,9 @@ spring:
     port: 6379
   datasource:
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 123456
       url: jdbc:mysql://81.69.194.36:3306/mj_shopping?useUnicode=true&characterEncoding=utf8&useCursorFetch=true&defaultFetchSize=500&allowMultiQueries=true&rewriteBatchedStatements=true&useSSL=false
-
+mapper:
+  identity: MYSQL
