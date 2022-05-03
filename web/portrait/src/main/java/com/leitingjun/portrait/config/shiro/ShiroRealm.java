@@ -1,5 +1,6 @@
 package com.leitingjun.portrait.config.shiro;
 
+import com.leitingjun.portrait.domain.po.user.Role;
 import com.leitingjun.portrait.domain.po.user.User;
 import com.leitingjun.portrait.service.UserService;
 import org.apache.shiro.authc.*;
@@ -13,6 +14,8 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 @Component
 public class ShiroRealm extends AuthorizingRealm {
     @Autowired
@@ -21,7 +24,8 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String)principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
+        Set<Role> roles = userService.findRoles(username);
+        authorizationInfo.setRoles();
         authorizationInfo.setStringPermissions(userService.findPermissions(username));
         System.out.println(userService.findPermissions(username));
         return authorizationInfo;
