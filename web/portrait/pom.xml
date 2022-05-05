@@ -77,6 +77,10 @@
     		<version>4.1.76.Final</version>
     		<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

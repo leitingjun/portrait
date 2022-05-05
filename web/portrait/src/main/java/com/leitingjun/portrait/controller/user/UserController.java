@@ -1,5 +1,6 @@
 package com.leitingjun.portrait.controller.user;
 
+import com.leitingjun.portrait.anno.ParameterLogger;
 import com.leitingjun.portrait.domain.po.user.User;
 import com.leitingjun.portrait.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -14,11 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.net.InetAddress;
 
 @RestController
 @RequestMapping("/user")
+@ParameterLogger
 public class UserController {
     private Logger logger= LoggerFactory.getLogger(UserController.class);
     @Autowired
@@ -43,5 +46,10 @@ public class UserController {
         }
         ResponseEntity<User> response = ResponseEntity.ok(user);
         return response;
+    }
+
+    @PostMapping("register")
+    public String register(String phone){
+        return "ok";
     }
 }
